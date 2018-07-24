@@ -31,7 +31,7 @@ public class Field {
 
         System.out.println("fieldMap = "+session.getAttribute("fieldMap"));
         System.out.println("parameter from JS = "+req.getParameter("inputId"));
-
+        
         return "pages/game";
     }
 
