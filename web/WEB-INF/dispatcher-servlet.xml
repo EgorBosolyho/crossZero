@@ -17,4 +17,7 @@
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <bean id="logic" class="controllers.Logic"/>
+
 </beans>
