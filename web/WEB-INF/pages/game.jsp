@@ -5,17 +5,18 @@
     <title>Крестики Нолики</title>
 
     <style type="text/css">
+        table {
+            border: 1px solid black;
+            width: auto;
+            margin: 10px auto auto;
+        }
+
         input {
             width: 30px;
             height: 30px;
             margin: 5px;
-            padding: 0;
         }
 
-        text {
-            margin: 0;
-            padding: 0;
-        }
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
@@ -39,10 +40,10 @@
     </script>
 </head>
 <body>
-<table>
+<table cellspacing="0">
     <tr>
         <td>
-            <input type="button" onclick="x(1)" id="button1" value="${sessionScope.get("fieldMap").get("1")}"/>
+            <input type="button" onclick="x(1)" id="button1" value="${sessionScope.get("fieldMap").get("1")}" ="c"/>
             <input type="button" onclick="x(2)" id="button2" value="${sessionScope.get("fieldMap").get("2")}"/>
             <input type="button" onclick="x(3)" id="button3" value="${sessionScope.get("fieldMap").get("3")}"/>
         </td>
@@ -61,9 +62,11 @@
             <input type="button" onclick="x(9)" id="button9" value="${sessionScope.get("fieldMap").get("9")}"/>
         </td>
     </tr>
+    <tr>
+        <td style="border-top: 1px solid black"><input type="button" onclick="reset()" value="Сброс" style="height: 30px;width: 120px"></td>
+    </tr>
 </table>
-<p>${sessionScope.get("checkWin")}<p/>
-<input type="button" onclick="reset()" value="Сброс" style="height: 30px;width: 120px">
+<h2 align="center">${sessionScope.get("checkWin")}<h2/>
 
 </body>
 </html>

@@ -4,7 +4,12 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Logic {
-    private final ArrayList<String> winList = new ArrayList<>(Arrays.asList("123", "456", "789", "147", "258", "369", "159", "357"));
+
+    private List<String> winList;
+    public void setWinList(List<String> winList) {
+        this.winList = winList;
+    }
+
     private List<String> listX;
     private List<String> listO;
     Map<String, String> fieldMap;
@@ -26,10 +31,12 @@ public class Logic {
         if (fieldMap.size() != 9) {
             //если интеллект не смог подобрать хороший вариант - зарандомить
             String actionPC;
-            if (!checkWinAction(listO).equals("")) {
-                actionPC = checkWinAction(listO);
+            String checkWinActionListO = checkWinAction(listO);
+            if (!checkWinActionListO.equals("")) {
+                actionPC = checkWinActionListO;
             } else {
-                actionPC = checkWinAction(listX).equals("") ? randomCell() : checkWinAction(listX);
+                String checkWinActionListX = checkWinAction(listX);
+                actionPC = checkWinActionListX.equals("") ? randomCell() : checkWinActionListX;
             }
             fieldMap.put(actionPC, "o");
             listO.add(actionPC);
@@ -63,10 +70,10 @@ public class Logic {
 
     private boolean checkWinList(List<String> list) {
         //проверка на выигрышные сочетания ячеек
-        for (String s : winList) {
+        for (String winCombination : winList) {
             int allCells = 0;
-            for (String ss : list) {
-                if (s.contains(ss)) {
+            for (String cell : list) {
+                if (winCombination.contains(cell)) {
                     allCells = allCells + 1;
                 }
             }
@@ -82,15 +89,15 @@ public class Logic {
         if (!listX.contains("5") && !listO.contains("5")) {
             return "5";
         }
-        for (String s : winList) {
+        for (String winCombination : winList) {
             int setCells = 0;
             int freeCells = 0;
             String freeCellNumber = "";
 
-            char[] chars = s.toCharArray();
-            for (char sChar : chars) {
+            char[] chars = winCombination.toCharArray();
+            for (char oneChar : chars) {
 
-                String stringChar = Character.toString(sChar);
+                String stringChar = Character.toString(oneChar);
                 if (list.contains(stringChar)) {
                     setCells = setCells + 1;
                 } else {
